@@ -21,3 +21,18 @@ const possibleFreelancers = [
   { name: "Dr. Wire", price: 47, occupation: "teacher" },
   { name: "Prof. Goose", price: 72, occupation: "driver" },
 ];
+// function that will calculate Average Starting Price.
+function calculateAverageStartingPrice() {}
+//add freelancers to the existing array
+function addFreelancers() {}
+// iterate through freelancers to create an element for each on and add info to the elementand add element to the DOM
+function renderFreelancers(freelancers) {
+  // iterates through array
+}
+// fuction that renders items onto the DOM
+function render() {}
+
+setInterval(() => {
+  addFreelancers();
+  render();
+}, 1000);

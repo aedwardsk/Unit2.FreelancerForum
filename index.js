@@ -23,15 +23,15 @@ const possibleFreelancers = [
 ];
 // function that will calculate Average Starting Price.
 function calculateAverageStartingPrice() {
-  const totalPrice = possibleFreelancers.reduce(
+  const totalPriceint = freelancers.reduce(
     (total, freelancer) => total + freelancer.price,
     0
   );
   //averagePrice is the Numerical price AveragePriceP Holds text information.
-  const averagePrice = totalPrice / possibleFreelancers.length;
+  const averagePrice = totalPriceint / freelancers.length;
 
   const root = document.querySelector("#root");
-  const averagePriceP = document.createElement("p");
+  const averagePriceP = document.getElementById("averagePrice");
   averagePriceP.textContent = `The average starting price is $${averagePrice.toFixed(
     2
   )} `;
@@ -40,15 +40,25 @@ function calculateAverageStartingPrice() {
 }
 
 //add freelancers to the existing array
-function addFreelancers() {}
+function addFreelancers() {
+  const randomFreelancer =
+    possibleFreelancers[Math.floor(Math.random() * possibleFreelancers.length)];
+  freelancers.push({
+    name: randomFreelancer.name,
+    price: randomFreelancer.price,
+    occupation: randomFreelancer.occupation,
+  });
+  // calculateAverageStartingPrice();
+}
 // iterate through freelancers to create an element for each on and add info to the elementand add element to the DOM
 function renderFreelancers(freelancers) {
   // iterates through array
-  const root = document.querySelector("#root");
+  const freelancerSection = document.querySelector("#freelancersection");
+  freelancerSection.innerHTML = "";
 
   freelancers.forEach((freelancer) => {
-    const freelancersection = document.createElement("div");
-    freelancersection.classList.add("freelancer");
+    const freelancerdiv = document.createElement("div");
+    freelancerdiv.classList.add("freelancer");
 
     const name = document.createElement("h3");
     name.textContent = freelancer.name;
@@ -59,24 +69,28 @@ function renderFreelancers(freelancers) {
     const price = document.createElement("p");
     price.textContent = `Price: $${freelancer.price}`;
 
-    freelancersection.appendChild(name);
-    freelancersection.appendChild(occupation);
-    freelancersection.appendChild(price);
+    freelancerdiv.appendChild(name);
+    freelancerdiv.appendChild(occupation);
+    freelancerdiv.appendChild(price);
 
-    root.appendChild(freelancersection);
+    freelancerSection.appendChild(freelancerdiv);
   });
 }
 
 // fuction that renders items onto the DOM
-function render() {}
+function render() {
+  renderFreelancers(freelancers);
+  calculateAverageStartingPrice();
+}
 
 setInterval(() => {
   addFreelancers();
   render();
-}, 1000);
+}, 3000);
+render();
 
-renderFreelancers(freelancers);
-calculateAverageStartingPrice();
+// renderFreelancers(freelancers);
+// calculateAverageStartingPrice();
 
 //back up code if need if doing the rendering in the same function does not work
 // const root = document.querySelector("#root");
